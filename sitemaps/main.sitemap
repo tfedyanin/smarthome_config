@@ -1,0 +1,32 @@
+sitemap main label="Наша квартира"
+{
+
+	Frame label="Свет" {
+		Switch item=LBed
+		Switch item=LBedWall
+		Switch item=LChild
+		Switch item=LCor
+		Switch item=LBath
+		Switch item=LWC
+		Switch item=LHall
+		Switch item=LKitch
+		Switch item=LCab 
+		Switch item=GLights mappings=[OFF="Выключить", ON="Включить"]
+	}
+	Frame label="Вытяжки" {
+		Switch item=HBath
+		Switch item=HWC
+		Switch item=HKitch
+	}
+	Frame label="Yamaha" {
+		Switch item=Yamaha_Power 
+		Switch item=Yamaha_Mute 
+		Slider item=Yamaha_Volume
+		Selection item=Yamaha_NetRadio label="Станция" mappings=[0="Megapolis FM 89.5", 1="Radio Nashe", 2="OkoloJazza", 3="Radio Jazz", 4="Radio Imagination Russia", 5="Radio Orpheus 99.2 FM"]
+		Selection item=Yamaha_Input mappings=[HDMI1="HDMI1",HDMI2="HDMI2","NET RADIO"="NetRadio",TUNER="Tuner"]
+		Selection item=Yamaha_Surround label="Конфигурация" mappings=["2ch Stereo"="2ch","7ch Stereo"="7ch"]
+	}
+	Frame label="Philips TV" {
+		Switch item=Philips_Standby mappings=[OFF="Выключить"]
+		Switch item=Philips_Mute
+	}

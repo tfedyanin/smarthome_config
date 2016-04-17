@@ -1,0 +1,170 @@
+import org.openhab.core.library.types.*
+import org.openhab.core.persistence.*
+import org.openhab.model.script.actions.*
+import org.joda.time.*
+import java.util.ArrayList
+import java.util.concurrent.locks.ReentrantLock
+
+val long WALL_DOUBLE_CLICK_MS = 500
+val java.util.Map<String, org.joda.time.DateTime> wallSwitchLastCalls = newHashMap()
+val java.util.ArrayList<org.openhab.core.library.items.SwitchItem> itms = newArrayList(LCab, LKitch)
+var java.util.concurrent.locks.ReentrantLock lock  = new java.util.concurrent.locks.ReentrantLock()
+
+val org.eclipse.xtext.xbase.lib.Functions$Function5 wallSwitchLogic = [
+	org.openhab.core.library.items.SwitchItem wallSwitch,
+	org.openhab.core.library.items.SwitchItem lightSwitch,
+	java.util.Map<String, org.joda.time.DateTime> lastCalls,
+	long timeout,
+	org.openhab.core.items.GroupItem items|	
+	logInfo("My scripts", "What's happen on " + wallSwitch.name + "?")
+	if(wallSwitch.state == ON) {
+		logInfo("My scripts", "Nothing happen on " + wallSwitch.name + "!")
+		//TODO: start spesial timer for dimmer
+	} else if(lastCalls.get(wallSwitch.name) == null || !now.isBefore(lastCalls.get(wallSwitch.name).plusMillis(timeout))){
+		if (lightSwitch.state == ON) {
+			lightSwitch.sendCommand(OFF)
+		} else
+		if (lightSwitch.state == OFF) {
+			lightSwitch.sendCommand(ON)
+		}	
+		logInfo("My scripts", "Single click on " + wallSwitch.name)
+		lastCalls.put(wallSwitch.name, new org.joda.time.DateTime())
+	} else {
+		logInfo("My scripts", "Double click on " + wallSwitch.name)
+		items?.members.filter(item|item.state == ON).forEach(item|item.sendCommand(OFF))
+	}
+	
+	
+]
+
+rule "Wall Switch TKitch"
+when Item TKitch received update then
+	logInfo("My scripts", "Rule Wall Switch TKitch")
+	lock.lock()
+	try {
+		wallSwitchLogic.apply(TKitch, LKitch, wallSwitchLastCalls, WALL_DOUBLE_CLICK_MS, GSwitches)
+	} finally{
+		lock.unlock()
+	}
+end
+
+rule "Wall Switch TCab"
+when Item TCab received update then
+	logInfo("My scripts", "Rule Wall Switch TCab")
+	lock.lock()
+	try {		
+		wallSwitchLogic.apply(TCab, LCab, wallSwitchLastCalls, WALL_DOUBLE_CLICK_MS, null)
+	} finally{
+		lock.unlock()
+	}
+end
+
+rule "Wall Switch THall"
+when Item THall received update then
+	logInfo("My scripts", "Rule Wall Switch THall")
+	lock.lock()
+	try {		
+		wallSwitchLogic.apply(THall, LHall, wallSwitchLastCalls, WALL_DOUBLE_CLICK_MS, GSwitches)
+	} finally{
+		lock.unlock()
+	}
+end
+
+rule "Wall Switch THWC"
+when Item THWC received update then
+	logInfo("My scripts", "Rule Wall Switch THWC")
+	lock.lock()
+	try {		
+		wallSwitchLogic.apply(THWC, HWC, wallSwitchLastCalls, WALL_DOUBLE_CLICK_MS, null)
+	} finally{
+		lock.unlock()
+	}
+end
+
+rule "Wall Switch THBath"
+when Item THBath received update then
+	logInfo("My scripts", "Rule Wall Switch THBath")
+	lock.lock()
+	try {		
+		wallSwitchLogic.apply(THBath, HBath, wallSwitchLastCalls, WALL_DOUBLE_CLICK_MS, null)
+	} finally{
+		lock.unlock()
+	}
+end
+
+rule "Wall Switch THKitch"
+when Item THKitch received update then
+	logInfo("My scripts", "Rule Wall Switch THKitch")
+	lock.lock()
+	try {		
+		wallSwitchLogic.apply(THKitch, HKitch, wallSwitchLastCalls, WALL_DOUBLE_CLICK_MS, null)
+	} finally{
+		lock.unlock()
+	}
+end
+
+rule "Wall Switch TCor"
+when Item TCor received update then
+	logInfo("My scripts", "Rule Wall Switch TCor")
+	lock.lock()
+	try {		
+		wallSwitchLogic.apply(TCor, LCor, wallSwitchLastCalls, WALL_DOUBLE_CLICK_MS, GSwitches)
+	} finally{
+		lock.unlock()
+	}
+end
+
+rule "Wall Switch TChild"
+when Item TChild received update then
+	logInfo("My scripts", "Rule Wall Switch TChild")
+	lock.lock()
+	try {		
+		wallSwitchLogic.apply(TChild, LChild, wallSwitchLastCalls, WALL_DOUBLE_CLICK_MS, null)
+	} finally{
+		lock.unlock()
+	}
+end
+
+rule "Wall Switch TBed"
+when Item TBed received update then
+	logInfo("My scripts", "Rule Wall Switch TBed")
+	lock.lock()
+	try {		
+		wallSwitchLogic.apply(TBed, LBed, wallSwitchLastCalls, WALL_DOUBLE_CLICK_MS, GSwitches)
+	} finally{
+		lock.unlock()
+	}
+end
+
+rule "Wall Switch TBedWall"
+when Item TBedWall received update then
+	logInfo("My scripts", "Rule Wall Switch TBedWall")
+	lock.lock()
+	try {		
+		wallSwitchLogic.apply(TBedWall, LBedWall, wallSwitchLastCalls, WALL_DOUBLE_CLICK_MS, GSwitches)
+	} finally{
+		lock.unlock()
+	}
+end
+
+rule "Wall Switch TWC"
+when Item TWC received update then
+	logInfo("My scripts", "Rule Wall Switch TWC")
+	lock.lock()
+	try {		
+		wallSwitchLogic.apply(TWC, LWC, wallSwitchLastCalls, WALL_DOUBLE_CLICK_MS, null)
+	} finally{
+		lock.unlock()
+	}
+end
+
+rule "Wall Switch TBath"
+when Item TBath received update then
+	logInfo("My scripts", "Rule Wall Switch TBath")
+	lock.lock()
+	try {		
+		wallSwitchLogic.apply(TBath, LBath, wallSwitchLastCalls, WALL_DOUBLE_CLICK_MS, null)
+	} finally{
+		lock.unlock()
+	}
+end

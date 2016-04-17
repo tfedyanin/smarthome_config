@@ -1,0 +1,62 @@
+Group All
+
+Group GSwitches "Реле" <video> (All)
+Group GLights "Свет" <video> (All)
+Group GHoods "Вытяжки" <video> (All)
+Group GWSw "Выключатели" (All)
+
+
+//Switch LightMainBedroom "Люстра" (GBedroom, GLights)
+//================================192.168.1.50=========================================
+Switch TCor 		"Вкл коридор" 			(GWSw) 						{megad= "=[192.168.1.50:0]"}
+Switch TChild 		"Вкл детская" 			(GWSw) 						{megad= "=[192.168.1.50:1]"}
+Switch TBed 		"Вкл спальня" 			(GWSw) 						{megad= "=[192.168.1.50:2]"}
+Switch TBedWall		"Вкл спал светил" 		(GWSw) 						{megad= "=[192.168.1.50:3]"}
+Switch TWC	 		"Вкл туалет"	 		(GWSw) 						{megad= "=[192.168.1.50:4]"}
+Switch TBath 		"Вкл ванная" 			(GWSw) 						{megad= "=[192.168.1.50:5]"}
+Switch LCor 		"Коридор" 				(GLights, GSwitches) 		{ http=	">[ON:GET:http://192.168.1.50/tic/?pt=7&cmd=7:1] >[OFF:GET:http://192.168.1.50/tic/?pt=7&cmd=7:0] <[http://192.168.1.50/tic/?pt=7&cmd=get:60000:REGEX((.*))]"	}	//p7
+Switch LChild 		"Детская" 				(GLights, GSwitches) 		{ http=	">[ON:GET:http://192.168.1.50/tic/?pt=8&cmd=8:1] >[OFF:GET:http://192.168.1.50/tic/?pt=8&cmd=8:0] <[http://192.168.1.50/tic/?pt=8&cmd=get:60000:REGEX((.*))]"	}	//p8
+Switch LBed 		"Спальня" 				(GLights, GSwitches) 		{ http=	">[ON:GET:http://192.168.1.50/tic/?pt=9&cmd=9:1] >[OFF:GET:http://192.168.1.50/tic/?pt=9&cmd=9:0] <[http://192.168.1.50/tic/?pt=9&cmd=get:60000:REGEX((.*))]"	}	//p9
+Switch LBedWall 	"Спальня светильники"	(GLights, GSwitches) 		{ http=	">[ON:GET:http://192.168.1.50/tic/?pt=10&cmd=10:1] >[OFF:GET:http://192.168.1.50/tic/?pt=10&cmd=10:0] <[http://192.168.1.50/tic/?pt=10&cmd=get:60000:REGEX((.*))]"	}	//p10
+Switch LBath 		"Ванная" 				(GLights, GSwitches) 		{ http=	">[ON:GET:http://192.168.1.50/tic/?pt=12&cmd=12:1] >[OFF:GET:http://192.168.1.50/tic/?pt=12&cmd=12:0] <[http://192.168.1.50/tic/?pt=12&cmd=get:60000:REGEX((.*))]"	}	//p12
+Switch LWC 			"Туалет" 				(GLights, GSwitches) 		{ http=	">[ON:GET:http://192.168.1.50/tic/?pt=13&cmd=13:1] >[OFF:GET:http://192.168.1.50/tic/?pt=13&cmd=13:0] <[http://192.168.1.50/tic/?pt=13&cmd=get:60000:REGEX((.*))]"	}	//p13
+//================================192.168.1.51=========================================
+Switch THall 		"Вкл прихожая" 			(GWSw) 						{megad= "=[192.168.1.51:0]"}
+Switch TKitch 		"Вкл кухня" 			(GWSw) 						{megad= "=[192.168.1.51:1]"}
+Switch TCab 		"Вкл кабинет" 			(GWSw) 						{megad= "=[192.168.1.51:2]"}
+Switch THWC 		"Вкл выт туалет" 		(GWSw) 						{megad= "=[192.168.1.51:4]"}
+Switch THBath 		"Вкл выт ванная" 		(GWSw) 						{megad= "=[192.168.1.51:5]"}
+Switch THKitch 		"Вкл выт кухня" 		(GWSw) 						{megad= "=[192.168.1.51:6]"}
+Switch LHall 		"Прихожая" 				(GLights,GSwitches) 		{ http=	">[ON:GET:http://192.168.1.51/tac/?pt=7&cmd=7:1] >[OFF:GET:http://192.168.1.51/tac/?pt=7&cmd=7:0] <[http://192.168.1.51/tac/?pt=7&cmd=get:60000:REGEX((.*))]"	} 	//p7
+Switch LKitch 		"Кухня" 				(GLights,GSwitches) 		{ http=	">[ON:GET:http://192.168.1.51/tac/?pt=8&cmd=8:1] >[OFF:GET:http://192.168.1.51/tac/?pt=8&cmd=8:0] <[http://192.168.1.51/tac/?pt=8&cmd=get:60000:REGEX((.*))]"	}	//p8
+Switch LCab 		"Кабинет" 				(GLights,GSwitches) 		{ http=	">[ON:GET:http://192.168.1.51/tac/?pt=9&cmd=9:1] >[OFF:GET:http://192.168.1.51/tac/?pt=9&cmd=9:0] <[http://192.168.1.51/tac/?pt=9&cmd=get:60000:REGEX((.*))]"	}	//p9
+Switch HWC 			"Туалет" 				(GHoods, GSwitches) 		{ http=	">[ON:GET:http://192.168.1.51/tac/?pt=11&cmd=11:1] >[OFF:GET:http://192.168.1.51/tac/?pt=11&cmd=11:0] <[http://192.168.1.51/tac/?pt=11&cmd=get:60000:REGEX((.*))]"	}	//p11
+Switch HBath 		"Ванная" 				(GHoods, GSwitches) 		{ http=	">[ON:GET:http://192.168.1.51/tac/?pt=12&cmd=12:1] >[OFF:GET:http://192.168.1.51/tac/?pt=12&cmd=12:0] <[http://192.168.1.51/tac/?pt=12&cmd=get:60000:REGEX((.*))]"	}	//p12
+Switch HKitch 		"Кухня"					(GHoods) 		{ http=	">[ON:GET:http://192.168.1.51/tac/?pt=13&cmd=13:1] >[OFF:GET:http://192.168.1.51/tac/?pt=13&cmd=13:0] <[http://192.168.1.51/tac/?pt=13&cmd=get:60000:REGEX((.*))]"	}	//p13
+//================================YAMAHA===============================================
+Switch Yamaha_Power         	"Питание [%s]"         	<tv>    			{ yamahareceiver="uid=living, zone=main,  bindingType=power" }
+Dimmer Yamaha_Volume         	"Громкость [%.1f %%]"             			{ yamahareceiver="uid=living, zone=main, bindingType=volumePercent" }
+Switch Yamaha_Mute             	"Без звука [%s]"                 			{ yamahareceiver="uid=living, zone=main, bindingType=mute" }
+String Yamaha_Input         	"Вход [%s]"                 				{ yamahareceiver="uid=living, zone=main, bindingType=input" } 
+String Yamaha_Surround         	"Конфигурация [%s]"             			{ yamahareceiver="uid=living, zone=main, bindingType=surroundProgram" } 
+Number Yamaha_NetRadio  		"e-Радио" 				<netRadio> 			{ yamahareceiver="uid=living, zone=main, bindingType=netRadio" }
+//================================PHILIPS TV===========================================
+Switch Philips_Mute               "Без звука"  {jointspace="ON:key.Mute, OFF:key.Mute, POLL:volume.mute"}
+//Switch Taste1                   "Taste1" {jointspace="ON:key.Digit1, OFF:key.Digit2"}
+Dimmer VolumeTV                 "Volume [%d]"       <slider> {jointspace="*:volume, POLL:volume"}
+//Switch ActivateAmbilight        "Ambilight Manipulation" <settings>          {jointspace="ON:ambilight.mode.manual, OFF:ambilight.mode.internal"}
+//Number Ambilight_mode           "Ambilight Mode"        <settings>   {jointspace="0:ambilight.mode.internal, 1:ambilight.mode.manual, 2:ambilight.mode.expert"}
+//Color  AmbilightAll             "Ambilight All"         <colorwheel> {jointspace="HSB:ambilight.color"}
+//Color  AmbilightLeft            "Ambilight Left"        <colorwheel> {jointspace="HSB:ambilight[layer1[left]].color"}
+//Color  AmbilightRight           "Ambilight Right"       <colorwheel> {jointspace="HSB:ambilight[layer1[right]].color"}
+//Color  AmbilightPixelLeft       "Ambilight PixelLeft"   <colorwheel> {jointspace="HSB:ambilight[layer1[left[0]]].color, POLL:ambilight[layer1[left[0]]].color"}
+
+Switch Philips_Standby "Питание" {jointspace="*:key.Standby"}
+//Switch VolumeUpDown "VolumeUpDown" {jointspace="ON:key.VolumeUp, OFF:key.VolumeDown"}
+//Switch ChannelStep "ChannelUpDown" {jointspace="ON:key.ChannelStepUp, OFF:key.ChannelStepDown"}
+//Switch AmbilightOnOff "AmbilightOnOff" {jointspace="*:key.AmbilightOnOff"}
+//Switch Source "Source" {jointspace="*:key.Source"}
+//Switch PlayPause "PlayPause" {jointspace="*:key.PlayPause"}
+//
+//String CurrentSource "Source" {jointspace="POLL:source"}
+//Number SetSource "Set Source" {jointspace="1:source.tv, 2:source.hdmi1, 3:source.hdmi2, 4:source.hdmi3, 5:source.hdmiside"}
