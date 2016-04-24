@@ -19,7 +19,7 @@ Switch LChild 		"Детская" 				(GLights, GSwitches) 		{ http=	">[ON:GET:ht
 Switch LBed 		"Спальня" 				(GLights, GSwitches) 		{ http=	">[ON:GET:http://192.168.1.50/tic/?pt=9&cmd=9:1] >[OFF:GET:http://192.168.1.50/tic/?pt=9&cmd=9:0] <[http://192.168.1.50/tic/?pt=9&cmd=get:60000:REGEX((.*))]"	}	//p9
 Switch LBedWall 	"Спальня светильники"	(GLights, GSwitches) 		{ http=	">[ON:GET:http://192.168.1.50/tic/?pt=10&cmd=10:1] >[OFF:GET:http://192.168.1.50/tic/?pt=10&cmd=10:0] <[http://192.168.1.50/tic/?pt=10&cmd=get:60000:REGEX((.*))]"	}	//p10
 Switch LBath 		"Ванная" 				(GLights, GSwitches) 		{ http=	">[ON:GET:http://192.168.1.50/tic/?pt=12&cmd=12:1] >[OFF:GET:http://192.168.1.50/tic/?pt=12&cmd=12:0] <[http://192.168.1.50/tic/?pt=12&cmd=get:60000:REGEX((.*))]"	}	//p12
-Switch LWC 			"Туалет" 				(GLights, GSwitches) 		{ http=	">[ON:GET:http://192.168.1.50/tic/?pt=13&cmd=13:1] >[OFF:GET:http://192.168.1.50/tic/?pt=13&cmd=13:0] <[http://192.168.1.50/tic/?pt=13&cmd=get:60000:REGEX((.*))]"	}	//p13
+Switch LiWC 			"Туалет" 				(GLights, GSwitches) 		{ http=	">[ON:GET:http://192.168.1.50/tic/?pt=13&cmd=13:1] >[OFF:GET:http://192.168.1.50/tic/?pt=13&cmd=13:0] <[http://192.168.1.50/tic/?pt=13&cmd=get:60000:REGEX((.*))]"	}	//p13
 //================================192.168.1.51=========================================
 Switch THall 		"Вкл прихожая" 			(GWSw) 						{megad= "=[192.168.1.51:0]"}
 Switch TKitch 		"Вкл кухня" 			(GWSw) 						{megad= "=[192.168.1.51:1]"}
